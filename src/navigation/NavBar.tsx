@@ -1,19 +1,18 @@
+import Link from 'next/link';
+
 const NavBar = () => {
   return (
     <nav role="navigation" aria-label="Site Navigation">
       <ul>
         <li>
-          <a href="#">One</a>
+          <Link href="/">Home</Link>
         </li>
         <li>
-          <a href="#">Two</a>
-        </li>
-        <li>
-          <a href="#">Three</a>
+          <Link href="/cytoscape">Cytoscape 1</Link>
         </li>
       </ul>
     </nav>
-  )
-}
+  );
+};
 
-export default NavBar
+export default NavBar;
