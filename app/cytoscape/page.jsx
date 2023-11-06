@@ -34,9 +34,16 @@ const stylesheet = [
   {
     selector: 'node',
     style: {
-      width: 20,
+      width: 100,
       height: 20,
       shape: 'rectangle',
+      content: 'data(label)',
+      'font-size': '12px',
+      'text-valign': 'center',
+      'text-halign': 'center',
+      color: 'blue',
+      'background-color': '#000000',
+      'background-opacity': 0,
     },
   },
   {
