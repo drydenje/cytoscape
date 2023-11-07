@@ -3,52 +3,131 @@ import React from 'react';
 import Cytoscape from 'cytoscape';
 import CytoscapeComponent from 'react-cytoscapejs';
 import dagre from 'cytoscape-dagre';
+import Colours from '@/base/utils/Colours';
+import { NodeDefault, NodeProfilePic } from '@/base/utils/NodeStyles';
 
 const elements = [
-  { data: { id: 'one', label: 'Parent' }, position: { x: 100, y: 0 } },
-  { data: { id: 'two', label: 'Child 1' }, position: { x: 0, y: 100 } },
-  { data: { id: 'three', label: 'Child 2' }, position: { x: 200, y: 100 } },
+  {
+    data: { id: 'head', label: 'HEAD', type: 'profilePic' },
+    position: { x: 100, y: 0 },
+  },
+  {
+    data: { id: 'toronto', label: 'TORONTO ACQUIRES' },
+    position: { x: 0, y: 100 },
+  },
+  {
+    data: { id: 'calgary', label: 'CALGARY ACQUIRES' },
+    position: { x: 200, y: 100 },
+  },
+  {
+    data: { id: 't1', label: 'FREDRIK SJOSTROM' },
+    position: { x: 200, y: 100 },
+  },
+  { data: { id: 't2', label: 'KEITH AULIE' }, position: { x: 200, y: 100 } },
+  { data: { id: 't3', label: 'DION PHANEUF' }, position: { x: 200, y: 100 } },
+  { data: { id: 'c1', label: 'MATT STAJAN' }, position: { x: 200, y: 100 } },
+  { data: { id: 'c2', label: 'JAMAL MAYERS' }, position: { x: 200, y: 100 } },
+  { data: { id: 'c3', label: 'IAN WHITE' }, position: { x: 200, y: 100 } },
+  { data: { id: 'c4', label: 'NIKLAS HAGMAN' }, position: { x: 200, y: 100 } },
   {
     data: {
-      source: 'one',
-      target: 'two',
-      label: 'Edge from Parent to Child 1',
+      source: 'head',
+      label: 'Toronto Acquires',
+      target: 'toronto',
     },
   },
   {
     data: {
-      source: 'one',
-      target: 'three',
-      label: 'Edge from Parent to Child 2',
+      source: 'head',
+      target: 'calgary',
+      label: 'Calgary Acquires',
+    },
+  },
+  {
+    data: {
+      source: 'toronto',
+      target: 't1',
+      label: 'Edge from Toronto to t1',
+    },
+  },
+  {
+    data: {
+      source: 'toronto',
+      target: 't2',
+      label: 'Edge from Toronto to t2',
+    },
+  },
+  {
+    data: {
+      source: 'toronto',
+      target: 't3',
+      label: 'Edge from Toronto to t3',
+    },
+  },
+  {
+    data: {
+      source: 'calgary',
+      target: 'c1',
+      label: 'Edge from Calgary to c1',
+    },
+  },
+  {
+    data: {
+      source: 'calgary',
+      target: 'c2',
+      label: 'Edge from Calgary to c2',
+    },
+  },
+  {
+    data: {
+      source: 'calgary',
+      target: 'c3',
+      label: 'Edge from Calgary to c3',
+    },
+  },
+  {
+    data: {
+      source: 'calgary',
+      target: 'c4',
+      label: 'Edge from Calgary to c4',
     },
   },
 ];
 
 const style = {
-  width: '600px',
-  height: '600px',
+  width: '100vw',
+  height: '80vh',
   border: '1px solid black',
+  margin: '0 auto',
+  color: Colours.secondary,
+  'background-color': Colours.primary,
 };
 
 const stylesheet = [
   {
     selector: 'node',
     style: {
-      width: 100,
-      height: 20,
-      shape: 'rectangle',
-      content: 'data(label)',
-      'font-size': '12px',
-      'text-valign': 'center',
-      'text-halign': 'center',
-      color: 'blue',
-      'background-color': '#000000',
-      'background-opacity': 0,
+      ...NodeDefault,
+    },
+  },
+  {
+    selector: 'node:orphan',
+    style: {
+      // ...TeamLarge,
+    },
+  },
+  {
+    selector: "node[type='profilePic']",
+    style: {
+      ...NodeDefault,
+      ...NodeProfilePic,
     },
   },
   {
     selector: 'edge',
     style: {
+      'line-color': '#ffffff',
+      width: 5,
       'curve-style': 'taxi',
       'taxi-direction': 'downward',
       'taxi-turn': 20,
