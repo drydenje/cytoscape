@@ -1,10 +1,18 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import Cytoscape from 'cytoscape';
 import CytoscapeComponent from 'react-cytoscapejs';
 import dagre from 'cytoscape-dagre';
+import popper from 'cytoscape-popper';
 import Colours from '@/base/utils/Colours';
-import { NodeDefault, NodeProfilePic } from '@/base/utils/NodeStyles';
+import {
+  NodeDefault,
+  NodeProfilePic,
+  NodeTeamTitle,
+} from '@/base/utils/NodeStyles';
+import { Button } from '@/base/components/ui/button';
 
 const elements = [
   {
@@ -12,11 +20,11 @@ const elements = [
     position: { x: 100, y: 0 },
   },
   {
-    data: { id: 'toronto', label: 'TORONTO ACQUIRES' },
+    data: { id: 'toronto', label: 'TORONTO ACQUIRES', type: 'teamTitle' },
     position: { x: 0, y: 100 },
   },
   {
-    data: { id: 'calgary', label: 'CALGARY ACQUIRES' },
+    data: { id: 'calgary', label: 'CALGARY ACQUIRES', type: 'teamTitle' },
     position: { x: 200, y: 100 },
   },
   {
@@ -29,6 +37,10 @@ const elements = [
   { data: { id: 'c2', label: 'JAMAL MAYERS' }, position: { x: 200, y: 100 } },
   { data: { id: 'c3', label: 'IAN WHITE' }, position: { x: 200, y: 100 } },
   { data: { id: 'c4', label: 'NIKLAS HAGMAN' }, position: { x: 200, y: 100 } },
+  {
+    data: { id: 'c5', label: 'Brett Sutter' },
+    position: { x: 200, y: 100 },
+  },
   {
     data: {
       source: 'head',
@@ -92,6 +104,13 @@ const elements = [
       label: 'Edge from Calgary to c4',
     },
   },
+  {
+    data: {
+      source: 'c3',
+      target: 'c5',
+      label: 'Edge from Calgary to c4',
+    },
+  },
 ];
 
 const style = {
@@ -100,7 +119,7 @@ const style = {
   border: '1px solid black',
   margin: '0 auto',
   color: Colours.secondary,
-  'background-color': Colours.primary,
+  backgroundColor: Colours.primary,
 };
 
 const stylesheet = [
@@ -124,6 +143,13 @@ const stylesheet = [
     },
   },
   {
+    selector: "node[type='teamTitle']",
+    style: {
+      ...NodeDefault,
+      ...NodeTeamTitle,
+    },
+  },
+  {
     selector: 'edge',
     style: {
       'line-color': '#ffffff',
@@ -139,8 +165,44 @@ const stylesheet = [
 const layout = { name: 'dagre' };
 
 Cytoscape.use(dagre);
+Cytoscape.use(popper);
+const PlayerInfo = () => {
+  return <Button>Oh Hai</Button>;
+};
+
+const createContentFromContent = (component) => {
+  const dummyDomEle = document.createElement('div');
+  // ReactDOM.render(component, dummyDomEle);
+  const ele = createRoot(dummyDomEle);
+  ele.render(dummyDomEle);
+  document.body.appendChild(dummyDomEle);
+  return dummyDomEle;
+};
 
 export default function Home() {
+  const cyRef = useRef(null);
+  const cyPopperRef = useRef(null);
+
+  useEffect(() => {
+    const cy = cyRef.current;
+
+    cy.nodes().on('mouseover', (event) => {
+      cyPopperRef.current = event.target.popper({
+        content: createContentFromContent(<PlayerInfo />),
+        popper: {
+          placement: 'right',
+          removeOnDestroy: true,
+        },
+      });
+    });
+
+    cy.nodes().on('mouseout', () => {
+      if (cyPopperRef) {
+        cyPopperRef.current.destroy();
+      }
+    });
+  }, []);
+
   return (
     <main>
       <h2>Cytoscape Test</h2>
@@ -149,6 +211,9 @@ export default function Home() {
         style={style}
         stylesheet={stylesheet}
         layout={layout}
+        cy={(cy) => {
+          cyRef.current = cy;
+        }}
       />
     </main>
   );

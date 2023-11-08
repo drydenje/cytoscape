@@ -22,4 +22,15 @@ const NodeProfilePic = {
   'background-opacity': 100,
 };
 
-export { NodeDefault, NodeProfilePic };
+const NodeTeamTitle = {
+  height: 60,
+  width: 350,
+  color: Colours.primary,
+  'background-color': Colours.secondary,
+};
+
+// const NodeTeamTitleSmall = {
+
+// }
+
+export { NodeDefault, NodeProfilePic, NodeTeamTitle };
