@@ -11,7 +11,7 @@ const NodeDefault = {
   'text-halign': 'center',
   color: '#FFFFFF',
   'background-color': Colours.primary,
-  'background-opacity': 100,
+  opacity: 1,
 };
 
 const NodeProfilePic = {
@@ -19,7 +19,7 @@ const NodeProfilePic = {
   width: 150,
   shape: 'ellipse',
   'background-color': '#ffffff',
-  'background-opacity': 100,
+  opacity: 1,
 };
 
 const NodeTeamTitle = {

@@ -1,6 +1,5 @@
 'use client';
 import React, { useEffect, useRef } from 'react';
-import ReactDOM from 'react-dom';
 import { createRoot } from 'react-dom/client';
 import Cytoscape from 'cytoscape';
 import CytoscapeComponent from 'react-cytoscapejs';
@@ -166,18 +165,27 @@ const layout = { name: 'dagre' };
 
 Cytoscape.use(dagre);
 Cytoscape.use(popper);
+
 const PlayerInfo = () => {
-  return <Button>Oh Hai</Button>;
+  // return <Button>Oh Hai</Button>;
+  return <div>Oh Hai</div>;
 };
 
-const createContentFromContent = (component) => {
-  const dummyDomEle = document.createElement('div');
-  // ReactDOM.render(component, dummyDomEle);
-  const ele = createRoot(dummyDomEle);
-  ele.render(dummyDomEle);
-  document.body.appendChild(dummyDomEle);
-  return dummyDomEle;
+const createContentFromComponent = (component) => {
+  // creates a div and assigns it to a variable
+  const container = document.createElement('div');
+  const ele = createRoot(container);
+  ele.render(component);
+  document.body.appendChild(container);
+  return container;
 };
+
+// const createContentFromComponent = (component) => {
+//   const dummyDomEle = document.createElement('div');
+//   ReactDOM.render(component, dummyDomEle);
+//   document.body.appendChild(dummyDomEle);
+//   return dummyDomEle;
+// };
 
 export default function Home() {
   const cyRef = useRef(null);
@@ -188,7 +196,7 @@ export default function Home() {
 
     cy.nodes().on('mouseover', (event) => {
       cyPopperRef.current = event.target.popper({
-        content: createContentFromContent(<PlayerInfo />),
+        content: createContentFromComponent(<PlayerInfo />),
         popper: {
           placement: 'right',
           removeOnDestroy: true,
@@ -198,7 +206,10 @@ export default function Home() {
 
     cy.nodes().on('mouseout', () => {
       if (cyPopperRef) {
+        console.log('cyPopperRef:', cyPopperRef.current);
+
         cyPopperRef.current.destroy();
+        console.log('after:', cyPopperRef.current);
       }
     });
   }, []);
