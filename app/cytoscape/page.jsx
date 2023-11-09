@@ -204,12 +204,18 @@ export default function Home() {
       });
     });
 
-    cy.nodes().on('mouseout', () => {
+    cy.nodes().on('mouseout', async () => {
       if (cyPopperRef) {
         console.log('cyPopperRef:', cyPopperRef.current);
 
-        cyPopperRef.current.destroy();
-        console.log('after:', cyPopperRef.current);
+        const test = cyPopperRef.current;
+        console.log('test:', test);
+
+        test.destroy();
+        test.destroy();
+        test.destroy();
+        console.log('test:', test);
+        // console.log('after:', cyPopperRef.current);
       }
     });
   }, []);
