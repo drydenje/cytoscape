@@ -167,8 +167,8 @@ Cytoscape.use(dagre);
 Cytoscape.use(popper);
 
 const PlayerInfo = () => {
-  // return <Button>Oh Hai</Button>;
-  return <div>Oh Hai</div>;
+  return <Button>Oh Hai</Button>;
+  // return <div>Oh Hai</div>;
 };
 
 const createContentFromComponent = (component) => {
@@ -205,18 +205,12 @@ export default function Home() {
     });
 
     cy.nodes().on('mouseout', async () => {
-      if (cyPopperRef) {
-        console.log('cyPopperRef:', cyPopperRef.current);
+      // if (cyPopperRef) {
+      // console.log('cyPopperRef:', cyPopperRef.current);
 
-        const test = cyPopperRef.current;
-        console.log('test:', test);
-
-        test.destroy();
-        test.destroy();
-        test.destroy();
-        console.log('test:', test);
-        // console.log('after:', cyPopperRef.current);
-      }
+      cyPopperRef.current.destroy();
+      console.log('after:', cyPopperRef.current);
+      // }
     });
   }, []);
 
@@ -230,6 +224,7 @@ export default function Home() {
         layout={layout}
         cy={(cy) => {
           cyRef.current = cy;
+          cy.layout(layout).run();
         }}
       />
     </main>
