@@ -14,32 +14,30 @@ import {
 import { Button } from '@/base/components/ui/button';
 
 const elements = [
-  {
-    data: { id: 'head', label: 'HEAD', type: 'profilePic' },
-    position: { x: 100, y: 0 },
-  },
-  {
-    data: { id: 'toronto', label: 'TORONTO ACQUIRES', type: 'teamTitle' },
-    position: { x: 0, y: 100 },
-  },
-  {
-    data: { id: 'calgary', label: 'CALGARY ACQUIRES', type: 'teamTitle' },
-    position: { x: 200, y: 100 },
-  },
-  {
-    data: { id: 't1', label: 'FREDRIK SJOSTROM' },
-    position: { x: 200, y: 100 },
-  },
-  { data: { id: 't2', label: 'KEITH AULIE' }, position: { x: 200, y: 100 } },
-  { data: { id: 't3', label: 'DION PHANEUF' }, position: { x: 200, y: 100 } },
-  { data: { id: 'c1', label: 'MATT STAJAN' }, position: { x: 200, y: 100 } },
-  { data: { id: 'c2', label: 'JAMAL MAYERS' }, position: { x: 200, y: 100 } },
-  { data: { id: 'c3', label: 'IAN WHITE' }, position: { x: 200, y: 100 } },
-  { data: { id: 'c4', label: 'NIKLAS HAGMAN' }, position: { x: 200, y: 100 } },
-  {
-    data: { id: 'c5', label: 'Brett Sutter' },
-    position: { x: 200, y: 100 },
-  },
+  { data: { id: 'head', label: 'HEAD', type: 'profilePic' } },
+
+  { data: { id: 'toronto', label: 'TORONTO ACQUIRES', type: 'teamTitle' } },
+  { data: { id: 't1', label: 'Fredrik Sjostrom' } },
+  { data: { id: 't2', label: 'Keith Aulie' } },
+  { data: { id: 't4', label: 'To Tampa Bay For', type: 'teamTitle' } },
+  { data: { id: 't5', label: 'Carter Ashton' } },
+  { data: { id: 't6', label: 'David Brolll' } },
+  { data: { id: 't7', label: 'To Tampa Bay For', type: 'teamTitle' } },
+  { data: { id: 't8', label: '7th Round Pick (2016)' } },
+  { data: { id: 't9', label: 'Ryan Lohin - 208th Overall' } },
+  { data: { id: 't3', label: 'Dion Phaneuf' } },
+
+  { data: { id: 'calgary', label: 'CALGARY ACQUIRES', type: 'teamTitle' } },
+  { data: { id: 'c1', label: 'Matt Stajan' } },
+  { data: { id: 'c2', label: 'Jamal Mayers' } },
+  { data: { id: 'c3', label: 'Iam White' } },
+  { data: { id: 'c4', label: 'Niklas Hagman' } },
+  { data: { id: 'c5', label: 'Brett Sutter' } },
+  { data: { id: 'c6', label: 'To Carolina For', type: 'teamTitle' } },
+  { data: { id: 'c7', label: 'Anton Babchuk' } },
+  { data: { id: 'c8', label: 'Tom Kostopoulos' } },
+
+  // Edges
   {
     data: {
       source: 'head',
@@ -65,6 +63,48 @@ const elements = [
     data: {
       source: 'toronto',
       target: 't2',
+      label: 'Edge from Toronto to t2',
+    },
+  },
+  {
+    data: {
+      source: 't2',
+      target: 't4',
+      label: 'Edge from Toronto to t2',
+    },
+  },
+  {
+    data: {
+      source: 't4',
+      target: 't5',
+      label: 'Edge from Toronto to t2',
+    },
+  },
+  {
+    data: {
+      source: 't5',
+      target: 't6',
+      label: 'Edge from Toronto to t2',
+    },
+  },
+  {
+    data: {
+      source: 't6',
+      target: 't7',
+      label: 'Edge from Toronto to t2',
+    },
+  },
+  {
+    data: {
+      source: 't7',
+      target: 't8',
+      label: 'Edge from Toronto to t2',
+    },
+  },
+  {
+    data: {
+      source: 't8',
+      target: 't9',
       label: 'Edge from Toronto to t2',
     },
   },
@@ -107,6 +147,27 @@ const elements = [
     data: {
       source: 'c3',
       target: 'c5',
+      label: 'Edge from Calgary to c4',
+    },
+  },
+  {
+    data: {
+      source: 'c5',
+      target: 'c6',
+      label: 'Edge from Calgary to c4',
+    },
+  },
+  {
+    data: {
+      source: 'c6',
+      target: 'c7',
+      label: 'Edge from Calgary to c4',
+    },
+  },
+  {
+    data: {
+      source: 'c6',
+      target: 'c8',
       label: 'Edge from Calgary to c4',
     },
   },
@@ -167,7 +228,8 @@ Cytoscape.use(dagre);
 Cytoscape.use(popper);
 
 const PlayerInfo = () => {
-  return <Button>Oh Hai</Button>;
+  return <Button>Hi</Button>;
+  // return <Button>Hi, {name}</Button>;
   // return <div>Oh Hai</div>;
 };
 
@@ -195,6 +257,8 @@ export default function Home() {
     const cy = cyRef.current;
 
     cy.nodes().on('mouseover', (event) => {
+      console.log('ref:', cyPopperRef);
+      console.log('e:', event);
       cyPopperRef.current = event.target.popper({
         content: createContentFromComponent(<PlayerInfo />),
         popper: {
@@ -205,12 +269,12 @@ export default function Home() {
     });
 
     cy.nodes().on('mouseout', async () => {
-      // if (cyPopperRef) {
-      // console.log('cyPopperRef:', cyPopperRef.current);
+      if (cyPopperRef) {
+        // console.log('cyPopperRef:', cyPopperRef.current);
 
-      cyPopperRef.current.destroy();
-      console.log('after:', cyPopperRef.current);
-      // }
+        cyPopperRef.current.destroy();
+        // console.log('after:', cyPopperRef.current);
+      }
     });
   }, []);
 
