@@ -1,6 +1,6 @@
 'use client';
 import React, { useEffect, useRef } from 'react';
-import { createRoot } from 'react-dom/client';
+import { createRoot, unmount } from 'react-dom/client';
 import Cytoscape from 'cytoscape';
 import CytoscapeComponent from 'react-cytoscapejs';
 import dagre from 'cytoscape-dagre';
@@ -228,7 +228,7 @@ Cytoscape.use(dagre);
 Cytoscape.use(popper);
 
 const PlayerInfo = () => {
-  return <Button>Hi</Button>;
+  return <Button id="playerTooltip">Hi</Button>;
   // return <Button>Hi, {name}</Button>;
   // return <div>Oh Hai</div>;
 };
@@ -252,13 +252,14 @@ const createContentFromComponent = (component) => {
 export default function Home() {
   const cyRef = useRef(null);
   const cyPopperRef = useRef(null);
+  const playerDetailsRef = useRef(null);
 
   useEffect(() => {
     const cy = cyRef.current;
 
     cy.nodes().on('mouseover', (event) => {
-      console.log('ref:', cyPopperRef);
-      console.log('e:', event);
+      // console.log('ref:', cyPopperRef);
+      // console.log('e:', event);
       cyPopperRef.current = event.target.popper({
         content: createContentFromComponent(<PlayerInfo />),
         popper: {
@@ -270,9 +271,22 @@ export default function Home() {
 
     cy.nodes().on('mouseout', async () => {
       if (cyPopperRef) {
-        // console.log('cyPopperRef:', cyPopperRef.current);
+        // console.log('cyPopperRef:', cyPopperRef.current.state.elements.popper);
+        // console.log(cyPopperRef.current);
 
+        // const root = cyPopperRef.current.state.elements.popper;
+        // root.destroy();
         cyPopperRef.current.destroy();
+
+        const div = document.getElementById('playerTooltip');
+        if (div !== null) {
+          console.log('div:', div);
+          const parent = div.closest('div');
+          playerDetailsRef.current = parent;
+        }
+        const root = createRoot(playerDetailsRef);
+        root.unmount();
+        console.log('playerDetailsRef.current:', playerDetailsRef.current);
         // console.log('after:', cyPopperRef.current);
       }
     });
@@ -288,9 +302,11 @@ export default function Home() {
         layout={layout}
         cy={(cy) => {
           cyRef.current = cy;
-          cy.layout(layout).run();
+          // cy.layout(layout).run();
         }}
       />
     </main>
   );
 }
+
+// const tmp =
