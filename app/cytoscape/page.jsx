@@ -1,6 +1,6 @@
 'use client';
 import React, { useEffect, useRef } from 'react';
-import { createRoot, unmount } from 'react-dom/client';
+import { createRoot } from 'react-dom/client';
 import Cytoscape from 'cytoscape';
 import CytoscapeComponent from 'react-cytoscapejs';
 import dagre from 'cytoscape-dagre';
@@ -242,24 +242,15 @@ const createContentFromComponent = (component) => {
   return container;
 };
 
-// const createContentFromComponent = (component) => {
-//   const dummyDomEle = document.createElement('div');
-//   ReactDOM.render(component, dummyDomEle);
-//   document.body.appendChild(dummyDomEle);
-//   return dummyDomEle;
-// };
-
 export default function Home() {
   const cyRef = useRef(null);
   const cyPopperRef = useRef(null);
-  const playerDetailsRef = useRef(null);
 
   useEffect(() => {
     const cy = cyRef.current;
 
     cy.nodes().on('mouseover', (event) => {
-      // console.log('ref:', cyPopperRef);
-      // console.log('e:', event);
+      console.log(event);
       cyPopperRef.current = event.target.popper({
         content: createContentFromComponent(<PlayerInfo />),
         popper: {
@@ -271,23 +262,9 @@ export default function Home() {
 
     cy.nodes().on('mouseout', async () => {
       if (cyPopperRef) {
-        // console.log('cyPopperRef:', cyPopperRef.current.state.elements.popper);
-        // console.log(cyPopperRef.current);
-
-        // const root = cyPopperRef.current.state.elements.popper;
-        // root.destroy();
+        const popperElement = cyPopperRef.current.state.elements.popper;
         cyPopperRef.current.destroy();
-
-        const div = document.getElementById('playerTooltip');
-        if (div !== null) {
-          console.log('div:', div);
-          const parent = div.closest('div');
-          playerDetailsRef.current = parent;
-        }
-        const root = createRoot(playerDetailsRef);
-        root.unmount();
-        console.log('playerDetailsRef.current:', playerDetailsRef.current);
-        // console.log('after:', cyPopperRef.current);
+        popperElement.remove();
       }
     });
   }, []);
@@ -308,5 +285,3 @@ export default function Home() {
     </main>
   );
 }
-
-// const tmp =
