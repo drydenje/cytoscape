@@ -250,7 +250,6 @@ export default function Home() {
     const cy = cyRef.current;
 
     cy.nodes().on('mouseover', (event) => {
-      console.log(event);
       cyPopperRef.current = event.target.popper({
         content: createContentFromComponent(<PlayerInfo />),
         popper: {
@@ -266,6 +265,17 @@ export default function Home() {
         cyPopperRef.current.destroy();
         popperElement.remove();
       }
+    });
+
+    cy.nodes().on('click', (event) => {
+      console.log('event:', event);
+      const clickedNode = event.target[0]._private.data.label;
+      console.log('clickedNode:', clickedNode);
+    });
+
+    cy.nodes().on('focus', (event) => {
+      console.log('FOCUS event:', event);
+      const clickedNode = event.target[0]._private.data.label;
     });
   }, []);
 
