@@ -10,6 +10,9 @@ const NavBar = () => {
         <li>
           <Link href="/cytoscape">Cytoscape 1</Link>
         </li>
+        <li>
+          <Link href="/tree">Graph Tests</Link>
+        </li>
       </ul>
     </nav>
   );

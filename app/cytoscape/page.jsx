@@ -23,8 +23,8 @@ const elements = [
   { data: { id: 't5', label: 'Carter Ashton' } },
   { data: { id: 't6', label: 'David Brolll' } },
   { data: { id: 't7', label: 'To Tampa Bay For', type: 'teamTitle' } },
-  { data: { id: 't8', label: '7th Round Pick (2016)' } },
-  { data: { id: 't9', label: 'Ryan Lohin - 208th Overall' } },
+  { data: { id: 't8', label: '7th Round Pick (2016)', parent: 't8' } },
+  { data: { id: 't9', label: 'Ryan Lohin - 208th Overall' }, parent: 't8' },
   { data: { id: 't3', label: 'Dion Phaneuf' } },
 
   { data: { id: 'calgary', label: 'CALGARY ACQUIRES', type: 'teamTitle' } },
@@ -210,6 +210,13 @@ const stylesheet = [
     },
   },
   {
+    selector: ':parent',
+    css: {
+      'text-valign': 'top',
+      'text-halign': 'center',
+    },
+  },
+  {
     selector: 'edge',
     style: {
       'line-color': '#ffffff',
@@ -222,13 +229,13 @@ const stylesheet = [
   },
 ];
 
-const layout = { name: 'dagre' };
+const layout = { name: 'preset' };
 
 Cytoscape.use(dagre);
 Cytoscape.use(popper);
 
 const PlayerInfo = () => {
-  return <Button id="playerTooltip">Hi</Button>;
+  return <Button>Hi</Button>;
   // return <Button>Hi, {name}</Button>;
   // return <div>Oh Hai</div>;
 };
@@ -280,7 +287,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main>
+    <>
       <h2>Cytoscape Test</h2>
       <CytoscapeComponent
         elements={elements}
@@ -292,6 +299,6 @@ export default function Home() {
           // cy.layout(layout).run();
         }}
       />
-    </main>
+    </>
   );
 }
