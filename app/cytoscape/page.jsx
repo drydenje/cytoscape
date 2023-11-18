@@ -24,7 +24,7 @@ const elements = [
   { data: { id: 't6', label: 'David Brolll' } },
   { data: { id: 't7', label: 'To Tampa Bay For', type: 'teamTitle' } },
   { data: { id: 't8', label: '7th Round Pick (2016)', parent: 't8' } },
-  { data: { id: 't9', label: 'Ryan Lohin - 208th Overall' }, parent: 't8' },
+  { data: { id: 't9', label: 'Ryan Lohin - 208th Overall', parent: 't8' } },
   { data: { id: 't3', label: 'Dion Phaneuf' } },
 
   { data: { id: 'calgary', label: 'CALGARY ACQUIRES', type: 'teamTitle' } },
@@ -229,7 +229,7 @@ const stylesheet = [
   },
 ];
 
-const layout = { name: 'preset' };
+const layout = { name: 'dagre' };
 
 Cytoscape.use(dagre);
 Cytoscape.use(popper);
