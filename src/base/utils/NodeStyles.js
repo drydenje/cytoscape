@@ -2,7 +2,7 @@ import Colours from './Colours';
 
 const NodeDefault = {
   height: 40,
-  width: 200,
+  width: 400,
   shape: 'rectangle',
   content: 'data(label)',
   'text-transform': 'uppercase',
@@ -10,7 +10,8 @@ const NodeDefault = {
   'text-valign': 'center',
   'text-halign': 'center',
   color: '#FFFFFF',
-  'background-color': Colours.primary,
+  // 'background-color': Colours.primary,
+  'background-color': 'green',
   opacity: 1,
 };
 

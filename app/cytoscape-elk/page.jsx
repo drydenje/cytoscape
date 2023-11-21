@@ -14,44 +14,45 @@ import {
 import { Button } from '@/base/components/ui/button';
 
 const elements = [
-  { data: { id: 'head', label: 'HEAD', type: 'profilePic' } },
+  // { data: { id: 'head', label: 'HEAD', type: 'profilePic' } },
 
   { data: { id: 'toronto', label: 'TORONTO ACQUIRES', type: 'teamTitle' } },
   { data: { id: 't1', label: 'Fredrik Sjostrom' } },
   { data: { id: 't2', label: 'Keith Aulie' } },
-  { data: { id: 't4', label: 'To Tampa Bay For', type: 'teamTitle' } },
-  { data: { id: 't5', label: 'Carter Ashton' } },
-  { data: { id: 't6', label: 'David Brolll' } },
-  { data: { id: 't7', label: 'To Tampa Bay For', type: 'teamTitle' } },
-  { data: { id: 't8', label: '7th Round Pick (2016)', parent: 't8' } },
-  { data: { id: 't9', label: 'Ryan Lohin - 208th Overall', parent: 't8' } },
+  // { data: { id: 't5', label: 'Carter Ashton' } },
+  // { data: { id: 't4', label: 'To Tampa Bay For', type: 'teamTitle' } },
+  // { data: { id: 't6', label: 'David Brolll' } },
+  // { data: { id: 't7', label: 'To Tampa Bay For', type: 'teamTitle' } },
+  // { data: { id: 't8', label: '7th Round Pick (2016)', parent: 't7' } },
+  // { data: { id: 't9', label: 'Ryan Lohin - 208th Overall', parent: 't7' } },
   { data: { id: 't3', label: 'Dion Phaneuf' } },
 
-  { data: { id: 'calgary', label: 'CALGARY ACQUIRES', type: 'teamTitle' } },
-  { data: { id: 'c1', label: 'Matt Stajan' } },
-  { data: { id: 'c2', label: 'Jamal Mayers' } },
-  { data: { id: 'c3', label: 'Iam White' } },
-  { data: { id: 'c4', label: 'Niklas Hagman' } },
-  { data: { id: 'c5', label: 'Brett Sutter' } },
-  { data: { id: 'c6', label: 'To Carolina For', type: 'teamTitle' } },
-  { data: { id: 'c7', label: 'Anton Babchuk' } },
-  { data: { id: 'c8', label: 'Tom Kostopoulos' } },
+  // { data: { id: 'calgary', label: 'CALGARY ACQUIRES', type: 'teamTitle' } },
+  // { data: { id: 'c1', label: 'Matt Stajan' } },
+  // { data: { id: 'c2', label: 'Jamal Mayers' } },
+  // { data: { id: 'c3', label: 'Iam White' } },
+  // { data: { id: 'c4', label: 'Niklas Hagman' } },
+  // { data: { id: 'c5', label: 'Brett Sutter' } },
+  // { data: { id: 'c6', label: 'To Carolina For', type: 'teamTitle' } },
+  // { data: { id: 'c7', label: 'Anton Babchuk' } },
+  // { data: { id: 'c8', label: 'Tom Kostopoulos' } },
 
   // Edges
-  {
-    data: {
-      source: 'head',
-      label: 'Toronto Acquires',
-      target: 'toronto',
-    },
-  },
-  {
-    data: {
-      source: 'head',
-      target: 'calgary',
-      label: 'Calgary Acquires',
-    },
-  },
+  // {
+  //   data: {
+  //     source: 'head',
+  //     label: 'Toronto Acquires',
+  //     target: 'toronto',
+  //   },
+  // },
+
+  // {
+  //   data: {
+  //     source: 'head',
+  //     target: 'calgary',
+  //     label: 'Calgary Acquires',
+  //   },
+  // },
   {
     data: {
       source: 'toronto',
@@ -66,48 +67,48 @@ const elements = [
       label: 'Edge from Toronto to t2',
     },
   },
-  {
-    data: {
-      source: 't2',
-      target: 't4',
-      label: 'Edge from Toronto to t2',
-    },
-  },
-  {
-    data: {
-      source: 't4',
-      target: 't5',
-      label: 'Edge from Toronto to t2',
-    },
-  },
-  {
-    data: {
-      source: 't5',
-      target: 't6',
-      label: 'Edge from Toronto to t2',
-    },
-  },
-  {
-    data: {
-      source: 't6',
-      target: 't7',
-      label: 'Edge from Toronto to t2',
-    },
-  },
-  {
-    data: {
-      source: 't7',
-      target: 't8',
-      label: 'Edge from Toronto to t2',
-    },
-  },
-  {
-    data: {
-      source: 't8',
-      target: 't9',
-      label: 'Edge from Toronto to t2',
-    },
-  },
+  // {
+  //   data: {
+  //     source: 't2',
+  //     target: 't4',
+  //     label: 'Edge from Toronto to t2',
+  //   },
+  // },
+  // {
+  //   data: {
+  //     source: 't4',
+  //     target: 't5',
+  //     label: 'Edge from Toronto to t2',
+  //   },
+  // },
+  // {
+  //   data: {
+  //     source: 't5',
+  //     target: 't6',
+  //     label: 'Edge from Toronto to t2',
+  //   },
+  // },
+  // {
+  //   data: {
+  //     source: 't6',
+  //     target: 't7',
+  //     label: 'Edge from Toronto to t2',
+  //   },
+  // },
+  // {
+  //   data: {
+  //     source: 't7',
+  //     target: 't8',
+  //     label: 'Edge from Toronto to t2',
+  //   },
+  // },
+  // {
+  //   data: {
+  //     source: 't8',
+  //     target: 't9',
+  //     label: 'Edge from Toronto to t2',
+  //   },
+  // },
   {
     data: {
       source: 'toronto',
@@ -115,62 +116,62 @@ const elements = [
       label: 'Edge from Toronto to t3',
     },
   },
-  {
-    data: {
-      source: 'calgary',
-      target: 'c1',
-      label: 'Edge from Calgary to c1',
-    },
-  },
-  {
-    data: {
-      source: 'calgary',
-      target: 'c2',
-      label: 'Edge from Calgary to c2',
-    },
-  },
-  {
-    data: {
-      source: 'calgary',
-      target: 'c3',
-      label: 'Edge from Calgary to c3',
-    },
-  },
-  {
-    data: {
-      source: 'calgary',
-      target: 'c4',
-      label: 'Edge from Calgary to c4',
-    },
-  },
-  {
-    data: {
-      source: 'c3',
-      target: 'c5',
-      label: 'Edge from Calgary to c4',
-    },
-  },
-  {
-    data: {
-      source: 'c5',
-      target: 'c6',
-      label: 'Edge from Calgary to c4',
-    },
-  },
-  {
-    data: {
-      source: 'c6',
-      target: 'c7',
-      label: 'Edge from Calgary to c4',
-    },
-  },
-  {
-    data: {
-      source: 'c6',
-      target: 'c8',
-      label: 'Edge from Calgary to c4',
-    },
-  },
+  // {
+  //   data: {
+  //     source: 'calgary',
+  //     target: 'c1',
+  //     label: 'Edge from Calgary to c1',
+  //   },
+  // },
+  // {
+  //   data: {
+  //     source: 'calgary',
+  //     target: 'c2',
+  //     label: 'Edge from Calgary to c2',
+  //   },
+  // },
+  // {
+  //   data: {
+  //     source: 'calgary',
+  //     target: 'c3',
+  //     label: 'Edge from Calgary to c3',
+  //   },
+  // },
+  // {
+  //   data: {
+  //     source: 'calgary',
+  //     target: 'c4',
+  //     label: 'Edge from Calgary to c4',
+  //   },
+  // },
+  // {
+  //   data: {
+  //     source: 'c3',
+  //     target: 'c5',
+  //     label: 'Edge from Calgary to c4',
+  //   },
+  // },
+  // {
+  //   data: {
+  //     source: 'c5',
+  //     target: 'c6',
+  //     label: 'Edge from Calgary to c4',
+  //   },
+  // },
+  // {
+  //   data: {
+  //     source: 'c6',
+  //     target: 'c7',
+  //     label: 'Edge from Calgary to c4',
+  //   },
+  // },
+  // {
+  //   data: {
+  //     source: 'c6',
+  //     target: 'c8',
+  //     label: 'Edge from Calgary to c4',
+  //   },
+  // },
 ];
 
 const style = {
@@ -258,9 +259,10 @@ const layout = {
     //
     // The main field to set is `algorithm`, which controls which particular layout algorithm is used.
     // Example (downwards layered layout):
-    algorithm: 'layered',
+    algorithm: 'mrtree',
     'elk.direction': 'DOWN',
-    hierarchyHandling: 'INCLUDE_CHILDREN',
+    unnecessaryBendpoints: 'true',
+    // hierarchyHandling: 'INCLUDE_CHILDREN',
   },
 };
 
